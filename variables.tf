@@ -36,7 +36,4 @@ variable "metric_category" {
     default = "AllMetrics"
 }
 
-variable "enable_logs_to_storage" {
-  description = "Boolean flag to specify whether the logs should be sent to the Storage Account"
-  type        = bool
-}
+
