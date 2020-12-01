@@ -1,4 +1,5 @@
 resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
+  count = var.enable_logs_to_storage ? 1 : 0
   name               = var.target_resource_name
   target_resource_id = var.target_resource_id
   storage_account_id = data.azurerm_storage_account.storage_account.id
