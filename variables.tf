@@ -31,9 +31,9 @@ variable "ds_allmetrics_rentention_days" {
 }
 
 variable "metric_category" {
-    type = string
+    type = map
     description = "Metric category"
-    default = "AllMetrics"
+    default = {}
 }
 
 
