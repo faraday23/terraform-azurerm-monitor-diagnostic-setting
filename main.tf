@@ -11,16 +11,16 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
 
       retention_policy {
         enabled = true
-        days    = lookup(var.ds_log_api_endpoints, log.value, 0)
+        days    = lookup(var.ds_log_api_endpoints, log.value, null)
       }
     }
   }
 
   metric {
-    category = var.metric_category
+    category = log.value
     retention_policy {
       enabled = true
-      days    = var.ds_allmetrics_rentention_days
+      days    = lookup(var.ds_allmetrics_rentention_days, log.value, null)
     }
   }
 }
