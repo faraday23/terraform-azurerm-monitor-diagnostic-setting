@@ -17,10 +17,10 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
   }
 
   metric {
-    category = log.value
+    category = metric.value
     retention_policy {
       enabled = true
-      days    = lookup(var.ds_allmetrics_rentention_days, log.value, null)
+      days    = lookup(var.ds_allmetrics_rentention_days, metric.value, null)
     }
   }
 }
