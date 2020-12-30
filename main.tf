@@ -16,11 +16,15 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
     }
   }
 
-  metric {
+  dynamic "metric" {
+    for_each = keys(var.ds_allmetrics_rentention_days)
+    content {
     category = metric.value
+      
     retention_policy {
       enabled = true
       days    = lookup(var.ds_allmetrics_rentention_days, metric.value, null)
+      }
     }
   }
 }
