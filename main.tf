@@ -16,7 +16,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
 
       retention_policy {
         enabled = var.enable_retention_policy
-        days    = lookup(var.ds_log_api_endpoints, log.value, null)
+        days    = lookup(var.ds_log_api_endpoints, log.value, var.enable_retention_policy)
       }
     }
   }
@@ -28,7 +28,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
 
       retention_policy {
         enabled = var.enable_retention_policy
-        days    = lookup(var.ds_allmetrics_retention_days, metric.value, null)
+        days    = lookup(var.ds_allmetrics_retention_days, metric.value, var.enable_retention_policy)
       }
     }
   }
