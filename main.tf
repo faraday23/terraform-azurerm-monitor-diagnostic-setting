@@ -1,3 +1,8 @@
+data "azurerm_storage_account" "storage_account" {
+  name                = var.storage_account
+  resource_group_name = var.sa_resource_group
+}
+
 resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
   name               = var.target_resource_name
   target_resource_id = var.target_resource_id
