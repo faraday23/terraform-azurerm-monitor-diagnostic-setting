@@ -22,13 +22,13 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
   }
 
   dynamic "metric" {
-    for_each = keys(var.ds_metrics)
+    for_each = keys(var.ds_allmetrics_retention_days)
     content {
       category = metric.value
 
       retention_policy {
         enabled = var.enable_retention_policy
-        days    = lookup(var.ds_metrics, metric.value, 0)
+        days    = lookup(var.ds_allmetrics_retention_days, metric.value, 0)
       }
     }
   }
