@@ -36,10 +36,11 @@ variable "metric_category" {
   default     = "AllMetrics"
 }
 
-#variable "enable_retention_policy" {
-#  type        = bool
-#  description = "toggle on/off the retention policy for the metric"
-#}
+variable "enable_retention_policy" {
+  type        = bool
+  description = "toggle on/off the retention policy for the metric"
+  default     = false
+}
 
 
 
