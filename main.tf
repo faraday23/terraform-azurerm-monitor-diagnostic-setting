@@ -15,20 +15,20 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       enabled  = true
 
       retention_policy {
-        enabled = true
+        enabled = var.enable_retention_policy
         days    = lookup(var.ds_log_api_endpoints, log.value, 0)
       }
     }
   }
 
   dynamic "metric" {
-    for_each = keys(var.ds_allmetrics_retention_days)
+    for_each = keys(var.ds_metrics)
     content {
       category = metric.value
 
       retention_policy {
-        enabled = true
-        days    = lookup(var.ds_allmetrics_retention_days, metric.value, 0)
+        enabled = var.enable_retention_policy
+        days    = lookup(var.ds_metrics, metric.value, 0)
       }
     }
   }
