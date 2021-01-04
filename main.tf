@@ -1,3 +1,4 @@
+
 data "azurerm_storage_account" "storage_account" {
   name                = var.storage_account
   resource_group_name = var.sa_resource_group
@@ -15,7 +16,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       enabled  = true
 
       retention_policy {
-        enabled = var.enable_retention_policy
+        enabled = (var.ds_allmetrics_retention_days.value > 0 ? true : false)
         days    = lookup(var.ds_log_api_endpoints, log.value, null)
       }
     }
@@ -27,7 +28,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       category = metric.value
 
       retention_policy {
-        enabled = (metric.value > 0 ? 1 : 0)
+        enabled = (var.ds_allmetrics_retention_days.value > 0 ? true : false)
         days    = lookup(var.ds_allmetrics_retention_days, metric.value, null)
       }
     }
