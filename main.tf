@@ -15,8 +15,8 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       enabled  = true
 
       retention_policy {
-        enabled = (keys(var.ds_log_api_endpoints) > 0 ? true : false)
-        days    = lookup(var.ds_log_api_endpoints, log.value, null)
+        enabled = true
+        days    = lookup(var.ds_log_api_endpoints, log.value, 0)
       }
     }
   }
@@ -27,8 +27,8 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       category = metric.value
 
       retention_policy {
-        enabled = (keys(var.ds_allmetrics_retention_days) > 0 ? true : false)
-        days    = lookup(var.ds_allmetrics_retention_days, metric.value, null)
+        enabled = true
+        days    = lookup(var.ds_allmetrics_retention_days, metric.value, 0)
       }
     }
   }
