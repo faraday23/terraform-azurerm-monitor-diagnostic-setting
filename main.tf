@@ -27,7 +27,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagsetting" {
       category = metric.value
 
       retention_policy {
-        enabled = var.enable_retention_policy
+        enabled = (var.ds_allmetrics_retention_days > 0 ? true : false)
         days    = lookup(var.ds_allmetrics_retention_days, metric.value, null)
       }
     }
