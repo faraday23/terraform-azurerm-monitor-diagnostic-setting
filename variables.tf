@@ -37,6 +37,7 @@ variable "metric_category" {
 }
 
 variable "enable_retention_policy" {
-  type        = bool
+  type        = string
   description = "toggle on/off the retention policy for the metric"
+  default     = "false"
 }
