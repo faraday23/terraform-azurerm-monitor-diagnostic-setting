@@ -24,7 +24,7 @@ variable "ds_log_api_endpoints" {
   default     = {}
 }
 
-variable "ds_allmetrics_retention_days" {
+variable "ds_metrics_retention_days" {
   type        = map
   description = "Azure monitor diagnostic setting category for retention in days of target resource."
   default     = {}
