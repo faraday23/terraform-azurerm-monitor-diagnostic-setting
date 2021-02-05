@@ -15,24 +15,6 @@ module "ds_mysql_server" {
 }
   
 # Diagnostic settings 
-
-variable "storage_account_resource_group" {
-  description = "Azure resource group where the storage account resides."
-  type        = string
-}
-
-variable "storage_endpoint" {
-  description = "This blob storage will hold all diagnostic setting audit logs. Required if state is Enabled."
-  type        = string
-  default     = ""
-}
-
-variable "storage_account_access_key" {
-  description = "Specifies the identifier key of the Threat Detection audit storage account. Required if state is Enabled."
-  type        = string
-  default     = ""
-}
-
 variable "mysqlslowlogs" {
   description = "The slow query log is a record of SQL queries that took a long time to perform."
   type        = number
